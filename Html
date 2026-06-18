@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apex Coating (EA) Ltd — Premier Paint Colours</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-brand">
+    <span class="nav-logo">APEX</span>
+    <span class="nav-sub">Coating (EA) Ltd</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#shades">Shades</a></li>
+    <li><a href="#mixer">Mixer</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#feedback">Feedback</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-content">
+    <p class="hero-eyebrow">Premier Coat Colours · East Africa</p>
+    <h1 class="hero-title">Every wall<br>tells a story.</h1>
+    <p class="hero-body">Explore over 100 hand-matched shades from Apex Coating — from deep Super Gloss to soft Vinyl Matt. Mix, preview, and find your perfect colour.</p>
+    <div class="hero-actions">
+      <a class="btn-fill" href="#shades">Browse shades</a>
+      <a class="btn-line" href="#mixer">Open mixer</a>
+    </div>
+  </div>
+  <div class="hero-strips" id="hero-strips"></div>
+</header>
+
+<!-- COLOUR SHADES -->
+<section id="shades" class="section">
+  <div class="section-head">
+    <span class="eyebrow">Colour families</span>
+    <h2 class="section-title">Browse by family</h2>
+    <p class="section-desc">Click <strong>+</strong> on any shade to add it to the mixer. Hover to see the name and code.</p>
+  </div>
+  <div class="family-tabs" id="family-tabs"></div>
+  <div id="family-panels"></div>
+</section>
+
+<!-- MIXER -->
+<section id="mixer" class="section section-dark">
+  <div class="section-head">
+    <span class="eyebrow">Colour mixer</span>
+    <h2 class="section-title">Blend your shade</h2>
+    <p class="section-desc">Add up to 6 shades — watch them pour and merge in real time.</p>
+  </div>
+  <div class="mixer-grid">
+    <div class="mixer-left">
+      <div class="chips-wrap" id="chips-wrap">
+        <span class="hint-text">No colours added — click + on any shade above</span>
+      </div>
+      <div class="mixer-list" id="mixer-list"></div>
+    </div>
+    <div class="mixer-right">
+      <div class="mix-preview" id="mix-preview">
+        <div class="pour-stream" id="pour-stream"></div>
+        <div class="mix-result">
+          <div class="mix-hex" id="mix-hex">—</div>
+          <div class="mix-name" id="mix-name">Add colours to blend</div>
+        </div>
+      </div>
+      <p class="sugg-label">Try adding</p>
+      <div class="sugg-grid" id="sugg-grid"></div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery" class="section">
+  <div class="section-head">
+    <span class="eyebrow">Full catalogue</span>
+    <h2 class="section-title">All shades</h2>
+    <p class="section-desc">Every Apex colour at a glance. Click any to add to the mixer.</p>
+  </div>
+  <div class="gallery-filters" id="gallery-filters"></div>
+  <div class="gallery-grid" id="gallery-grid"></div>
+</section>
+
+<!-- FEEDBACK -->
+<section id="feedback" class="section section-dark">
+  <div class="section-head">
+    <span class="eyebrow">Your thoughts</span>
+    <h2 class="section-title">Share feedback</h2>
+    <p class="section-desc">We'd love to hear what you think. Choose how you'd like to share.</p>
+  </div>
+  <div class="feedback-layout">
+    <div class="feedback-options">
+      <div class="fb-option active" id="opt-email" onclick="setFbMode('email')">
+        <div class="fb-opt-icon">✉</div>
+        <div>
+          <div class="fb-opt-title">Send via Email</div>
+          <div class="fb-opt-desc">Fill the form and we'll receive it directly</div>
+        </div>
+      </div>
+      <div class="fb-option" id="opt-google" onclick="setFbMode('google')">
+        <div class="fb-opt-icon">G</div>
+        <div>
+          <div class="fb-opt-title">Google Form</div>
+          <div class="fb-opt-desc">Open our Google Form in a new tab</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Email form -->
+    <div id="fb-email-form">
+      <div id="fb-success" style="display:none" class="fb-success">
+        <div class="success-check">✓</div>
+        <h3>Thank you!</h3>
+        <p>Your feedback has been sent to the Apex team.</p>
+        <button class="btn-line" onclick="resetFb()">Send another</button>
+      </div>
+      <div id="fb-form-inner">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Name <span class="req">*</span></label>
+            <input class="form-input" id="fb-name" type="text" placeholder="Your name">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email <span class="req">*</span></label>
+            <input class="form-input" id="fb-email" type="email" placeholder="you@example.com">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Rating <span class="req">*</span></label>
+          <div class="star-row" id="star-row">
+            <button class="star" data-v="1">★</button>
+            <button class="star" data-v="2">★</button>
+            <button class="star" data-v="3">★</button>
+            <button class="star" data-v="4">★</button>
+            <button class="star" data-v="5">★</button>
+          </div>
+          <input type="hidden" id="fb-rating" value="0">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Favourite shade <span class="form-opt">(optional)</span></label>
+          <select class="form-input" id="fb-shade"><option value="">— Select —</option></select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Message <span class="req">*</span></label>
+          <textarea class="form-input form-ta" id="fb-msg" placeholder="What do you think of our colours?"></textarea>
+        </div>
+        <div class="form-err" id="form-err" style="display:none"></div>
+        <button class="btn-fill submit-btn" id="submit-btn" onclick="submitFb()">
+          <span id="submit-lbl">Send feedback</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Google Form redirect -->
+    <div id="fb-google-panel" style="display:none" class="google-panel">
+      <div class="gf-icon">📋</div>
+      <h3>Google Form</h3>
+      <p>Click below to open our feedback form in Google Forms. It only takes 2 minutes.</p>
+      <a class="btn-fill" href="https://forms.gle/YOUR_GOOGLE_FORM_LINK" target="_blank" rel="noopener">
+        Open Google Form →
+      </a>
+      <p class="gf-note">Replace the link above in the code with your actual Google Form URL.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-brand">
+    <span class="footer-logo">APEX</span>
+    <span class="footer-tagline">Coating (EA) Ltd · Premier Coat Colours</span>
+  </div>
+  <div class="footer-copy">© 2025 Apex Coating East Africa Ltd</div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
