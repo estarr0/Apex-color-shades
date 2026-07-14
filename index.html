@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apex Coating – Premier Coat</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ===== RESET & BASE ===== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #FAF8F3;
+            color: #1B2A3D;
+            line-height: 1.6;
+        }
+        .display { font-family: 'Fraunces', serif; }
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 2rem; }
+        a { text-decoration: none; color: inherit; }
+        img { max-width: 100%; display: block; }
+
+        /* ===== HEADER ===== */
+        .header {
+            background: #1B2A3D;
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        .header .logo-section .logo {
+            height: 50px;
+            object-fit: contain;
+        }
+        .header .logo-section .premier-logo {
+            height: 40px;
+            object-fit: contain;
+        }
+        .header .slogan {
+            font-size: 0.85rem;
+            opacity: 0.8;
+            font-style: italic;
+            display: none;
+        }
+        .header nav {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .header nav a {
+            color: white;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: opacity 0.2s;
+        }
+        .header nav a:hover { opacity: 0.7; }
+        .header .cart-icon {
+            background: #C98A1D;
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .header .cart-icon:hover { background: #b07818; }
+
+        /* ===== HERO ===== */
+        .hero {
+            background: linear-gradient(135deg, #f5e6d3 0%, #e8d5c4 50%, #d9c4b0 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" opacity="0.08"><circle cx="50" cy="50" r="40" fill="%23C98A1D"/><circle cx="350" cy="80" r="60" fill="%23C98A1D"/><circle cx="200" cy="350" r="80" fill="%23C98A1D"/><circle cx="80" cy="300" r="50" fill="%23C98A1D"/><circle cx="320" cy="280" r="30" fill="%23C98A1D"/></svg>');
+            background-size: cover;
+            pointer-events: none;
+        }
+        .hero .content {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+        }
+        .hero h1 {
+            font-size: 3.2rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 0.5rem;
+        }
+        .hero h1 span { color: #C98A1D; }
+        .hero p {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            margin-bottom: 2rem;
+        }
+        .hero .logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .hero .logos img {
+            height: 60px;
+            object-fit: contain;
+        }
+        .hero .btn-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .btn-primary {
+            background: #C98A1D;
+            color: white;
+            padding: 0.8rem 2.5rem;
+            border-radius: 40px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 1rem;
+        }
+        .btn-primary:hover { background: #b07818; transform: scale(1.02); }
+        .btn-secondary {
+            background: transparent;
+            color: #1B2A3D;
+            padding: 0.8rem 2.5rem;
+            border-radius: 40px;
+            font-weight: 600;
+            border: 2px solid #1B2A3D;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 1rem;
+        }
+        .btn-secondary:hover { background: #1B2A3D; color: white; }
+
+        /* ===== SECTION TITLES ===== */
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+        .section-sub {
+            text-align: center;
+            opacity: 0.7;
+            margin-bottom: 2rem;
+            font-size: 1.05rem;
+        }
+
+        /* ===== PRODUCT CATEGORIES ===== */
+        .categories {
+            padding: 3rem 0;
+        }
+        .category-tabs {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+        .category-tabs button {
+            padding: 0.5rem 1.2rem;
+            border-radius: 30px;
+            border: none;
+            background: #e8e3dc;
+            font-weight: 600;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: 0.2s;
+            color: #1B2A3D;
+        }
+        .category-tabs button.active {
+            background: #C98A1D;
+            color: white;
+        }
+        .category-tabs button:hover { background: #d4c9be; }
+
+        /* ===== PRODUCT GRID ===== */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 1.5rem;
+        }
+        .product-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(27,42,61,0.06);
+            transition: 0.2s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+            display: flex;
+            flex-direction: column;
+        }
+        .product-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 28px rgba(0,0,0,0.06);
+        }
+        .product-card .image-wrap {
+            background: #faf8f3;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 180px;
+        }
+        .product-card .image-wrap img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+        }
+        .product-card .info {
+            padding: 0.8rem 1rem 1.2rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-card .info .name {
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.2rem;
+            line-height: 1.2;
+        }
+        .product-card .info .size {
+            font-size: 0.8rem;
+            opacity: 0.6;
+        }
+        .product-card .info .price {
+            font-weight: 700;
+            color: #C98A1D;
+            margin: 0.3rem 0;
+        }
+        .product-card .info .actions {
+            display: flex;
+            gap: 0.4rem;
+            margin-top: auto;
+            flex-wrap: wrap;
+        }
+        .product-card .info .actions select {
+            padding: 0.3rem 0.4rem;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            font-size: 0.75rem;
+            flex: 1;
+            min-width: 50px;
+        }
+        .product-card .info .actions .add-btn {
+            background: #C98A1D;
+            color: white;
+            border: none;
+            padding: 0.3rem 0.8rem;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: 0.2s;
+            white-space: nowrap;
+        }
+        .product-card .info .actions .add-btn:hover { background: #b07818; }
+
+        /* ===== SHADES SECTION (BS 4800) ===== */
+        .shades-section {
+            padding: 3rem 0;
+            background: #f5f0ea;
+        }
+        .shade-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 1rem;
+        }
+        .shade-item {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            text-align: center;
+            border: 1px solid rgba(0,0,0,0.04);
+            transition: 0.2s;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+        .shade-item:hover { transform: scale(1.02); box-shadow: 0 6px 16px rgba(0,0,0,0.04); }
+        .shade-item .swatch {
+            width: 100%;
+            height: 60px;
+            border-radius: 8px;
+            margin-bottom: 0.3rem;
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+        .shade-item .name {
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+        .shade-item .code {
+            font-size: 0.6rem;
+            opacity: 0.5;
+            font-family: monospace;
+        }
+
+        /* ===== CART SIDEBAR ===== */
+        .cart-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.4);
+            z-index: 999;
+            display: none;
+            justify-content: flex-end;
+        }
+        .cart-overlay.open { display: flex; }
+        .cart-panel {
+            background: white;
+            width: 100%;
+            max-width: 420px;
+            padding: 2rem;
+            overflow-y: auto;
+            box-shadow: -8px 0 24px rgba(0,0,0,0.06);
+        }
+        .cart-panel .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        .cart-panel .cart-header h2 { font-size: 1.4rem; }
+        .cart-panel .cart-header .close { font-size: 1.6rem; cursor: pointer; opacity: 0.4; }
+        .cart-panel .cart-items { list-style: none; padding: 0; }
+        .cart-panel .cart-items li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.6rem 0;
+            border-bottom: 1px solid #eee;
+            font-size: 0.9rem;
+        }
+        .cart-panel .cart-items .remove { color: #c0392b; cursor: pointer; font-weight: 700; }
+        .cart-panel .cart-total {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin: 1rem 0;
+        }
+        .cart-panel .cart-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            margin-top: 1rem;
+        }
+        .cart-panel .cart-actions .btn-wa {
+            background: #25D366;
+            color: white;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        .cart-panel .cart-actions .btn-email {
+            background: #1B2A3D;
+            color: white;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        /* ===== FOOTER ===== */
+        .footer {
+            background: #1B2A3D;
+            color: #ccc;
+            padding: 2rem 2rem;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+        .footer a { color: #C98A1D; }
+        .footer .footer-logos {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        .footer .footer-logos img { height: 40px; object-fit: contain; filter: brightness(0) invert(1); opacity: 0.7; }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .product-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+            .shade-grid { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
+            .header .logo-section .logo { height: 40px; }
+            .header .logo-section .premier-logo { height: 30px; }
+        }
+        @media (max-width: 480px) {
+            .product-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
+            .hero { padding: 2rem 1rem; min-height: 40vh; }
+            .container { padding: 0 1rem; }
+        }
+
+        /* ===== PLACEHOLDER IMAGE ===== */
+        .placeholder-img {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #e8e3dc;
+            color: #1B2A3D;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-align: center;
+            padding: 0.5rem;
+            height: 100%;
+            width: 100%;
+            border-radius: 8px;
+            flex-direction: column;
+        }
+        .placeholder-img .label { font-size: 0.7rem; opacity: 0.6; margin-top: 0.2rem; }
+    </style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="header">
+    <div class="logo-section">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 60'%3E%3Crect width='200' height='60' fill='%231B2A3D'/%3E%3Ctext x='10' y='38' font-family='Inter, sans-serif' font-weight='700' font-size='24' fill='%23C98A1D'%3EAPEX%3C/text%3E%3Ctext x='90' y='38' font-family='Inter, sans-serif' font-weight='400' font-size='16' fill='%23FFFFFF'%3ECoating%3C/text%3E%3C/svg%3E" alt="Apex Coating" class="logo">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 40'%3E%3Crect width='160' height='40' fill='%231B2A3D'/%3E%3Ctext x='10' y='26' font-family='Fraunces, serif' font-weight='700' font-size='18' fill='%23C98A1D'%3EPREMIER%3C/text%3E%3Ctext x='100' y='26' font-family='Inter, sans-serif' font-weight='400' font-size='12' fill='%23FFFFFF'%3ECoat%3C/text%3E%3C/svg%3E" alt="Premier Coat" class="premier-logo">
+    </div>
+    <nav>
+        <a href="#products">Products</a>
+        <a href="#shades">Shades</a>
+        <a href="#contact">Contact</a>
+        <div class="cart-icon" id="cartToggle">🛒 <span id="cartCount">0</span></div>
+    </nav>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+    <div class="content">
+        <div class="logos">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 60'%3E%3Crect width='200' height='60' fill='%231B2A3D' rx='4'/%3E%3Ctext x='15' y='38' font-family='Inter, sans-serif' font-weight='700' font-size='28' fill='%23C98A1D'%3EAPEX%3C/text%3E%3Ctext x='100' y='38' font-family='Inter, sans-serif' font-weight='400' font-size='18' fill='%23FFFFFF'%3ECoating%3C/text%3E%3C/svg%3E" alt="Apex Coating" style="height:50px;">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 40'%3E%3Crect width='160' height='40' fill='%231B2A3D' rx='4'/%3E%3Ctext x='10' y='26' font-family='Fraunces, serif' font-weight='700' font-size='18' fill='%23C98A1D'%3EPREMIER%3C/text%3E%3Ctext x='100' y='26' font-family='Inter, sans-serif' font-weight='400' font-size='12' fill='%23FFFFFF'%3ECoat%3C/text%3E%3C/svg%3E" alt="Premier Coat" style="height:40px;">
+        </div>
+        <h1 class="display">Colors <span>True to Nature</span></h1>
+        <p>Premium paints, industrial coatings, and adhesives — built for East Africa.</p>
+        <div class="btn-group">
+            <a href="#products" class="btn-primary">Explore Products</a>
+            <a href="#shades" class="btn-secondary">View Shades</a>
+        </div>
+    </div>
+</section>
+
+<!-- ===== PRODUCTS ===== -->
+<section class="categories container" id="products">
+    <h2 class="section-title display">Our Products</h2>
+    <p class="section-sub">Premium, economy, industrial — find the right coating for every surface.</p>
+
+    <div class="category-tabs" id="categoryTabs">
+        <button class="active" data-cat="all">All</button>
+        <button data-cat="premier">Premier Coat</button>
+        <button data-cat="texstar">Texstar Coat</button>
+        <button data-cat="industrial">Industrial</button>
+        <button data-cat="serafric">Serafric</button>
+        <button data-cat="thinners">Thinners</button>
+    </div>
+
+    <div class="product-grid" id="productGrid"></div>
+</section>
+
+<!-- ===== SHADES (BS 4800) ===== -->
+<section class="shades-section" id="shades">
+    <div class="container">
+        <h2 class="section-title display">BS 4800 Colour Shades</h2>
+        <p class="section-sub">Browse our full range of standard colours — true to nature.</p>
+        <div class="shade-grid" id="shadeGrid"></div>
+    </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section class="container" id="contact" style="padding: 3rem 2rem; text-align: center;">
+    <h2 class="section-title display">Get in Touch</h2>
+    <p style="max-width: 500px; margin: 0 auto 1.5rem; opacity: 0.7;">Need a quote or have a question? Reach out to us directly.</p>
+    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="https://wa.me/254722252134" target="_blank" class="btn-primary" style="background: #25D366;">Chat on WhatsApp</a>
+        <a href="mailto:apex@apexcoating.com" class="btn-secondary">Send Email</a>
+    </div>
+    <div style="margin-top: 2rem; font-size: 0.9rem; opacity: 0.6;">
+        <p>📍 Lusingeti Road, off Likoni Road, Industrial Area, Nairobi</p>
+        <p>📞 +254 722 252 134 &nbsp;|&nbsp; ✉️ apex@apexcoating.com</p>
+    </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+    <div class="footer-logos">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 60'%3E%3Crect width='200' height='60' fill='%231B2A3D'/%3E%3Ctext x='10' y='38' font-family='Inter, sans-serif' font-weight='700' font-size='24' fill='%23C98A1D'%3EAPEX%3C/text%3E%3Ctext x='90' y='38' font-family='Inter, sans-serif' font-weight='400' font-size='16' fill='%23FFFFFF'%3ECoating%3C/text%3E%3C/svg%3E" alt="Apex Coating">
+        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 40'%3E%3Crect width='160' height='40' fill='%231B2A3D'/%3E%3Ctext x='10' y='26' font-family='Fraunces, serif' font-weight='700' font-size='18' fill='%23C98A1D'%3EPREMIER%3C/text%3E%3Ctext x='100' y='26' font-family='Inter, sans-serif' font-weight='400' font-size='12' fill='%23FFFFFF'%3ECoat%3C/text%3E%3C/svg%3E" alt="Premier Coat">
+    </div>
+    <p style="opacity:0.5; font-size:0.8rem;">&copy; 2026 Apex Coating (EA) Ltd — Colors True to Nature</p>
+</footer>
+
+<!-- ===== CART SIDEBAR ===== -->
+<div class="cart-overlay" id="cartOverlay">
+    <div class="cart-panel">
+        <div class="cart-header">
+            <h2>🛒 Your Quote</h2>
+            <span class="close" id="cartClose">&times;</span>
+        </div>
+        <ul class="cart-items" id="cartItems"></ul>
+        <div class="cart-total" id="cartTotal">Total: KES 0</div>
+        <div class="cart-actions">
+            <button class="btn-wa" id="checkoutWA">📱 Request via WhatsApp</button>
+            <button class="btn-email" id="checkoutEmail">✉️ Request via Email</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // ============================================================
+    // DATA — PRODUCTS + SHADES (BS 4800)
+    // ============================================================
+
+    const categories = {
+        premier: { label: 'Premier Coat', icon: '🏠' },
+        texstar: { label: 'Texstar Coat', icon: '🎨' },
+        industrial: { label: 'Industrial Range', icon: '🏭' },
+        serafric: { label: 'Serafric Glues', icon: '🧴' },
+        thinners: { label: 'Thinners & Solvents', icon: '🧪' }
+    };
+
+    const products = [
+        // ---- PREMIER COAT ----
+        { id: 'premier-covermatt-20', name: 'Covermatt', size: '20L', price: 4000, cat: 'premier', img: 'premier-covermatt-20' },
+        { id: 'premier-covermatt-10', name: 'Covermatt', size: '10L', price: 2300, cat: 'premier', img: 'placeholder' },
+        { id: 'premier-covermatt-4', name: 'Covermatt', size: '4L', price: 1030, cat: 'premier', img: 'premier-covermatt-4' },
+        { id: 'premier-vinylmatt-20', name: 'Vinyl Matt Emulsion', size: '20L', price: 8600, cat: 'premier', img: 'premier-vinylmatt-20' },
+        { id: 'premier-vinylmatt-10', name: 'Vinyl Matt Emulsion', size: '10L', price: 4700, cat: 'premier', img: 'placeholder' },
+        { id: 'premier-vinylmatt-4', name: 'Vinyl Matt Emulsion', size: '4L', price: 1900, cat: 'premier', img: 'placeholder' },
+        { id: 'premier-vinylmatt-1', name: 'Vinyl Matt Emulsion', size: '1L', price: 550, cat: 'premier', img: 'placeholder' },
+        { id: 'premier-silk-20', name: 'Silk Vinyl Wallsheen', size: '20L', price: 10000, cat: 'premier', img: 'premier-silk-20' },
+        { id: 'premier-silk-10', name: 'Silk Vinyl Wallsheen', size: '10L', price: 5500, cat: 'premier', img: 'placeholder' },
+        { id: 'premier-silk-4', name: 'Silk Vinyl Wallsheen', size: '4L', price: 2100, cat: 'premier', img: 'premier-silk-4' },
+        { id: 'premier-silk-1', name: 'Silk Vinyl Wallsheen', size: '1L', price: 650, cat: 'premier', img: 'premier-silk-1' },
+        { id: 'premier-silicone-20', name: 'Silicone Weathershield', size: '20L', price: 10000, cat: 'premier', img: 'premier-silicone-20' },
+        { id: 'premier-silicone-10', name: 'Silicone Weathershield', size: '10L', price: 5000, cat: 'premier', img: 'placeholder' },
+        { id: 'premier-silicone-4', name: 'Silicone Weathershield', size: '4L', price: 2100, cat: 'premier', img: 'placeholder' },
+        { id: 'premier-silicone-1', name: 'Silicone Weathershield', size: '1L', price: 650, cat: 'premier', img: 'placeholder' },
+        { id: 'premier-supergloss-20', name: 'Supergloss', size: '20L', price: 10500, cat: 'premier', img: 'premier-supergloss-20' },
+        { id: 'premier-supergloss-10', name: 'Supergloss', size: '10L', price: 5500, cat: 'premier', img: 'placeholder' },
+        { id: 'premier-supergloss-4', name: 'Supergloss', size: '4L', price: 2250, cat: 'premier', img: 'placeholder' },
+
+        // ---- TEXSTAR COAT ----
+        { id: 'texstar-emulsion-20', name: 'Texstar Emulsion', size: '20L', price: 2200, cat: 'texstar', img: 'placeholder' },
+        { id: 'texstar-emulsion-10', name: 'Texstar Emulsion', size: '10L', price: 1500, cat: 'texstar', img: 'texstar-emulsion-10' },
+        { id: 'texstar-emulsion-4', name: 'Texstar Emulsion', size: '4L', price: 850, cat: 'texstar', img: 'texstar-emulsion-4' },
+        { id: 'texstar-emulsion-1', name: 'Texstar Emulsion', size: '1L', price: 390, cat: 'texstar', img: 'placeholder' },
+        { id: 'texstar-plastic-20', name: 'Plastic Emulsion', size: '20L', price: 1500, cat: 'texstar', img: 'texstar-plastic-20' },
+        { id: 'texstar-plastic-10', name: 'Plastic Emulsion', size: '10L', price: 850, cat: 'texstar', img: 'texstar-plastic-10' },
+        { id: 'texstar-plastic-4', name: 'Plastic Emulsion', size: '4L', price: 390, cat: 'texstar', img: 'texstar-plastic-4' },
+        { id: 'texstar-plastic-1', name: 'Plastic Emulsion', size: '1L', price: 140, cat: 'texstar', img: 'placeholder' },
+        { id: 'texstar-gloss-20', name: 'Gloss Enamel', size: '20L', price: 4500, cat: 'texstar', img: 'placeholder' },
+        { id: 'texstar-gloss-4', name: 'Gloss Enamel', size: '4L', price: 900, cat: 'texstar', img: 'texstar-gloss-4' },
+        { id: 'texstar-gloss-1', name: 'Gloss Enamel', size: '1L', price: 300, cat: 'texstar', img: 'texstar-gloss-1' },
+        { id: 'texstar-varnish-4', name: 'Varnish', size: '4L', price: 1300, cat: 'texstar', img: 'texstar-varnish-4' },
+        { id: 'texstar-silver-20', name: 'Silver Aluminium', size: '20L', price: 6800, cat: 'texstar', img: 'texstar-silver-20' },
+        { id: 'texstar-silver-4', name: 'Silver Aluminium', size: '4L', price: 1650, cat: 'texstar', img: 'texstar-silver-4' },
+
+        // ---- INDUSTRIAL ----
+        { id: 'ind-epoxy-4', name: '2-Pack Epoxy Paint', size: '4L', price: 2700, cat: 'industrial', img: 'ind-epoxy-4' },
+        { id: 'ind-chlorinated-4', name: 'Chlorinated Rubber Paint', size: '4L', price: 2700, cat: 'industrial', img: 'ind-chlorinated-4' },
+        { id: 'ind-bituminous-4', name: 'Bituminous Black', size: '4L', price: 1400, cat: 'industrial', img: 'ind-bituminous-4' },
+        { id: 'ind-fastdry-4', name: 'Fast Dry White/Black', size: '4L', price: 3000, cat: 'industrial', img: 'ind-fastdry-4' },
+
+        // ---- SERAFRIC GLUES ----
+        { id: 'serafric-101-5', name: 'Serafric 101 Contact Cement', size: '5L', price: 2000, cat: 'serafric', img: 'serafric-101-5' },
+        { id: 'serafric-101-1', name: 'Serafric 101 Contact Cement', size: '1L', price: 440, cat: 'serafric', img: 'placeholder' },
+        { id: 'serafric-202-1', name: 'Serafric 202 PVC Adhesive', size: '1L', price: 630, cat: 'serafric', img: 'serafric-202-1' },
+        { id: 'serafric-202-05', name: 'Serafric 202 PVC Adhesive', size: '½L', price: 360, cat: 'serafric', img: 'serafric-202-05' },
+        { id: 'serafric-103-5', name: 'Serafric 103 Leather Glue', size: '5L', price: 2000, cat: 'serafric', img: 'serafric-103-5' },
+        { id: 'serafric-199-05', name: 'Serafric 199 Wood Glue', size: '500g', price: 250, cat: 'serafric', img: 'serafric-199-05' },
+
+        // ---- THINNERS ----
+        { id: 'thin-turpentine-5', name: 'Turpentine', size: '5L', price: 1300, cat: 'thinners', img: 'thin-turpentine-5' },
+        { id: 'thin-turpentine-4', name: 'Turpentine', size: '4L', price: 1200, cat: 'thinners', img: 'thin-turpentine-4' },
+        { id: 'thin-turpentine-1', name: 'Turpentine', size: '1L', price: 300, cat: 'thinners', img: 'thin-turpentine-1' },
+        { id: 'thin-standard-5', name: 'Standard Thinner', size: '5L', price: 1300, cat: 'thinners', img: 'thin-standard-5' },
+        { id: 'thin-special-5', name: 'Special White Spirit', size: '5L', price: 1400, cat: 'thinners', img: 'thin-special-5' },
+        { id: 'thin-special-1', name: 'Special White Spirit', size: '1L', price: 350, cat: 'thinners', img: 'thin-special-1' },
+    ];
+
+    // --- BS 4800 Shades (sample) ---
+    const shadeFamilies = [
+        { name: 'Red', shades: [{ name: 'Rosso', hex: '#C4293A' }, { name: 'Brick', hex: '#B5342A' }] },
+        { name: 'Blue', shades: [{ name: 'Cornflower', hex: '#1F5FA8' }, { name: 'Capri', hex: '#1B7A8C' }] },
+        { name: 'Green', shades: [{ name: 'Emerald', hex: '#1A8C55' }, { name: 'Sage', hex: '#B7C89E' }] },
+        { name: 'Yellow', shades: [{ name: 'Golden Sun', hex: '#F0CB53' }, { name: 'Mustard', hex: '#C99A3E' }] },
+        { name: 'Neutral', shades: [{ name: 'Soft White', hex: '#F5F1E7' }, { name: 'Ivory', hex: '#F0E6C9' }] },
+        { name: 'Grey', shades: [{ name: 'Steel', hex: '#7E8A8C' }, { name: 'Pebble', hex: '#C6C9C3' }] },
+    ];
+    const shades = shadeFamilies.flatMap(f => f.shades.map(s => ({ ...s, family: f.name })));
+
+    // ============================================================
+    // STATE
+    // ============================================================
+    let cart = [];
+    let currentCategory = 'all';
+
+    // ============================================================
+    // DOM REFS
+    // ============================================================
+    const grid = document.getElementById('productGrid');
+    const shadeGrid = document.getElementById('shadeGrid');
+    const cartItems = document.getElementById('cartItems');
+    const cartTotal = document.getElementById('cartTotal');
+    const cartCount = document.getElementById('cartCount');
+    const cartOverlay = document.getElementById('cartOverlay');
+
+    // ============================================================
+    // HELPERS
+    // ============================================================
+    function getImage(product) {
+        // If the product has a real image key, return it; else placeholder
+        // For demo, we use a simple placeholder SVG
+        if (product.img && product.img !== 'placeholder') {
+            return `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23f5f0ea'/%3E%3Ctext x='20' y='100' font-family='Inter' font-size='16' fill='%231B2A3D'%3E${product.name}%3C/text%3E%3Ctext x='20' y='130' font-family='Inter' font-size='12' fill='%23666'%3E${product.size}%3C/text%3E%3C/svg%3E`;
+        }
+        return `data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' fill='%23e8e3dc'/%3E%3Ctext x='30' y='90' font-family='Inter' font-size='16' fill='%231B2A3D'%3E${product.name}%3C/text%3E%3Ctext x='30' y='120' font-family='Inter' font-size='12' fill='%23666'%3E${product.size}%3C/text%3E%3Ctext x='30' y='150' font-family='Inter' font-size='10' fill='%23999'%3E(Image coming soon)%3C/text%3E%3C/svg%3E`;
+    }
+
+    function renderProducts() {
+        const filtered = currentCategory === 'all' ? products : products.filter(p => p.cat === currentCategory);
+        grid.innerHTML = filtered.map(p => `
+            <div class="product-card" data-id="${p.id}">
+                <div class="image-wrap">
+                    <img src="${getImage(p)}" alt="${p.name} ${p.size}" loading="lazy">
+                </div>
+                <div class="info">
+                    <div class="name">${p.name}</div>
+                    <div class="size">${p.size}</div>
+                    <div class="price">KES ${p.price.toLocaleString()}</div>
+                    <div class="actions">
+                        <select data-id="${p.id}" data-size="${p.size}" data-price="${p.price}" data-name="${p.name}">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                        </select>
+                        <button class="add-btn" data-id="${p.id}">+ Add</button>
+                    </div>
+                </div>
+            </div>
+        `).join('');
+
+        // Attach add events
+        document.querySelectorAll('.add-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const card = btn.closest('.product-card');
+                const id = card.dataset.id;
+                const product = products.find(p => p.id === id);
+                if (!product) return;
+                const qty = parseInt(card.querySelector('select').value) || 1;
+                const existing = cart.find(item => item.id === id);
+                if (existing) {
+                    existing.qty += qty;
+                } else {
+                    cart.push({ ...product, qty });
+                }
+                updateCartUI();
+            });
+        });
+    }
+
+    function renderShades() {
+        shadeGrid.innerHTML = shades.map(s => `
+            <div class="shade-item">
+                <div class="swatch" style="background:${s.hex};"></div>
+                <div class="name">${s.name}</div>
+                <div class="code">${s.hex}</div>
+                <div style="font-size:0.6rem; opacity:0.4;">${s.family}</div>
+            </div>
+        `).join('');
+    }
+
+    function updateCartUI() {
+        const count = cart.reduce((sum, item) => sum + item.qty, 0);
+        cartCount.textContent = count;
+        const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+        cartTotal.textContent = `Total: KES ${total.toLocaleString()}`;
+
+        if (cart.length === 0) {
+            cartItems.innerHTML = '<li style="opacity:0.5; text-align:center; padding:1rem 0;">Your cart is empty.</li>';
+            return;
+        }
+        cartItems.innerHTML = cart.map(item => `
+            <li>
+                <span>${item.name} (${item.size}) × ${item.qty}</span>
+                <span>KES ${(item.price * item.qty).toLocaleString()} 
+                    <span class="remove" data-id="${item.id}">✕</span>
+                </span>
+            </li>
+        `).join('');
+
+        document.querySelectorAll('.cart-items .remove').forEach(el => {
+            el.addEventListener('click', () => {
+                const id = el.dataset.id;
+                cart = cart.filter(item => item.id !== id);
+                updateCartUI();
+            });
+        });
+    }
+
+    // ============================================================
+    // CART TOGGLE
+    // ============================================================
+    document.getElementById('cartToggle').addEventListener('click', () => {
+        cartOverlay.classList.toggle('open');
+    });
+    document.getElementById('cartClose').addEventListener('click', () => {
+        cartOverlay.classList.remove('open');
+    });
+    cartOverlay.addEventListener('click', (e) => {
+        if (e.target === cartOverlay) cartOverlay.classList.remove('open');
+    });
+
+    // ============================================================
+    // CHECKOUT
+    // ============================================================
+    function buildMessage() {
+        if (cart.length === 0) return 'No items in cart.';
+        const lines = cart.map(item => `${item.name} (${item.size}) × ${item.qty} = KES ${(item.price * item.qty).toLocaleString()}`);
+        const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+        return `Apex Coating Quote:\n${lines.join('\n')}\n\nTotal: KES ${total.toLocaleString()}\n\nPlease confirm availability.`;
+    }
+
+    document.getElementById('checkoutWA').addEventListener('click', () => {
+        if (cart.length === 0) return alert('Cart is empty.');
+        const msg = encodeURIComponent(buildMessage());
+        window.open(`https://wa.me/254722252134?text=${msg}`, '_blank');
+    });
+
+    document.getElementById('checkoutEmail').addEventListener('click', () => {
+        if (cart.length === 0) return alert('Cart is empty.');
+        const subject = 'Quote Request – Apex Coating';
+        const body = encodeURIComponent(buildMessage());
+        window.location.href = `mailto:apex@apexcoating.com?subject=${encodeURIComponent(subject)}&body=${body}`;
+    });
+
+    // ============================================================
+    // CATEGORY TABS
+    // ============================================================
+    document.querySelectorAll('#categoryTabs button').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('#categoryTabs button').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentCategory = btn.dataset.cat;
+            renderProducts();
+        });
+    });
+
+    // ============================================================
+    // INIT
+    // ============================================================
+    renderProducts();
+    renderShades();
+    updateCartUI();
+</script>
+</body>
+</html>
